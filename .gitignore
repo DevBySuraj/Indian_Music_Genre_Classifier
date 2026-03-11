@@ -205,3 +205,10 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+added after:
+genrenew
+cleaned_songs_wav
+hindi_music
+temp.wav
+.vscode
