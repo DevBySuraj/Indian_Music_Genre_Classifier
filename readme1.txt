@@ -274,12 +274,14 @@ Final step
 done unitl here pushing to git - 11:27 pm
 
 
+
+
 19/3/2026 - Final data Preprocessing
 
-preparing the dataset in mel's and their respectie labels in numpy array for each stem
+preparing the dataset in mel's and their respective labels in numpy array for each stem
 
 example - 
-1. vocal stem
+1. vocal stem for each stem
 -- vocal_features and vocal_labels
 
 made a load and preprocess function which takes, data dir and classes
@@ -288,7 +290,9 @@ made a load and preprocess function which takes, data dir and classes
 3. then saves the np array for both data and labels
 4. repeating the whole task for each stems
 
+
 at the end confirming the no of sample with thier shapes by loading the npy files
+
 
 #
 One Small Adjustment for Drums
@@ -314,3 +318,30 @@ You have four separate datasets. You have two choices now:
 Option A: Train one "Super Model" on the OTHER stem (since it has the most data and instrumental detail).
 
 Option B: Train a Vocal model and a Drum model separately and see which one is more accurate.
+
+
+
+
+20/3/2026 - 7:40pm
+
+Building the model on different approaches:
+
+1. different models for each stem then vote for each predictions by the model 
+
+--However, they often use "Late Fusion" Ensembles (similar to your Approach 1). 
+They train models on different features (like rhythm and melody) and then use a 
+"Meta-Classifier" (a small neural network) to look at all the predictions and make the final call.
+
+2. multi input cnn(mini-cnn) - complex and requires lot of ram to trained
+--The model can learn that "High energy in Drums + Classical instruments
+ in Other = Semiclassical." It understands the relationship between stems.
+
+what i am going to do now?
+build the model on the other stem cause indian music is more about instruments
+
+then gonna build for other stems 
+
+Once you have the best settings for your individual models, we combine them into one Multi-Input Model.
+
+
+
