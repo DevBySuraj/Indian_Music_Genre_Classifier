@@ -68,5 +68,13 @@ Option A: Train one "Super Model" on the OTHER stem (since it has the most data 
 
 Option B: Train a Vocal model and a Drum model separately and see which one is more accurate.
 
+# Step 5: Dataset 3 way split and Normalization
+
+Splitted the data in 3 way split with shuffling and stratfiy
+1. training data 80%
+2. validation data 10%
+3. Test Data 10%
+
+Normalization of data from decibel(-80, 0) to (0 - 1) on train data only for all splitof(X)
 
 

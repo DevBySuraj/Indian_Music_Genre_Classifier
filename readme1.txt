@@ -339,9 +339,135 @@ They train models on different features (like rhythm and melody) and then use a
 what i am going to do now?
 build the model on the other stem cause indian music is more about instruments
 
-then gonna build for other stems 
+then gonna build for other(vocal, drums and bass) stems and compare with the other(stem)
 
 Once you have the best settings for your individual models, we combine them into one Multi-Input Model.
 
+actions:
+Splitting of the data in 3 way split with shuffling and stratfiy
+1. training data 80%
+2. validation data 10%
+3. Test Data 10%
+
+Normalization of data from decibel(-80, 0) to 0 - 1 on train data only for all splitof(X)
 
 
+21/3/26 10:39pm
+
+model choose  - > sequential
+
+
+24/3/26 
+
+adding the layers in the model
+
+
+Quick Audit of Your Architecture
+
+Filter Progression: You followed the standard 32 -> 64 -> 128 -> 256 -> 512 pattern.
+This is excellent. It starts by looking for simple audio "textures" and ends by looking for complex "genre signatures.
+
+"Double Conv Blocks: Using two Conv2D layers before each MaxPool2D is a pro move.
+it allows the model to learn more non-linear features before it reduces the image size.
+
+Dropout Strategy: Your use of $0.3$ and $0.45$ at the end is very smart. Since you have 1,200 units in your Dense layer,
+the model would definitely try to "memorize" your training songs without that $45\%$ dropout.
+
+
+Image shrinking error might cause:
+I noticed a potential issue in your code that might cause an error when you run model.summary():
+The Shrinking Input Problem: Your input is (150,150). Every time you use MaxPool2D and Conv2D (without padding='same'),
+the layers of Conv2D and Max pool which don't have padding = 'same'
+the image gets smaller. You have 5 MaxPool layers.
+150→75→37→18→9→4.
+in model summary see how it changes
+
+conv2d reduces image size(150, 150) but small
+pooling reduces approx half of it
+
+pooling 5 layes
+150, 74, 36, 17 7, 2
+By the time you reach the 512 filter layer, your "image" might be too small for a 3×3 kernel to slide over it.
+Recommendation: If you get a "Negative dimension" error, change all your Conv2D layers to have padding='same'.
+ This keeps the image size consistent and only lets the MaxPool do the shrinking.
+
+if i do padding = same for all conv layers the image size will not reduce by conv2d it will only reduce by pooling
+
+
+What is happening inside?
+Extraction: The Conv2D layers are acting like "audio detectives," finding the frequency patterns that define Carnatic vs. Bollypop.
+
+Pooling: MaxPool2D is discarding the "junk" pixels and only keeping the strongest musical signals.
+
+Classification: The Dense(1200) layer is taking all those signals and making the final decision.
+
+
+Compiling the Model:
+Setting the learning_rate to 0.0001 is a very smart move for a model this deep. Since you have many layers (32→512 filters),
+ a high learning rate might cause the model to "overshoot" the solution and never converge. Starting slow allows the weights
+  to adjust carefully to the complex patterns in Indian music.
+
+
+model training - 8:34 by cpu
+
+
+For spleeter use: as it supports below 2.10 of tf
+2. The "DirectML" Plugin (Modern & Robust)
+If you don't want to mess with specific CUDA versions, this is the most "painless" way. 
+It uses the Microsoft DirectML library to bridge your GPU to any version of TensorFlow.
+# Force install a version Spleeter likes
+pip install tensorflow-cpu==2.9.1 
+# Add the GPU "Bridge"
+pip install tensorflow-directml-plugin
+
+Spleeter sees a "Standard" CPU version of TensorFlow and doesn't complain.
+The directml-plugin then sits on top and "steals" the math work to give it to your 3050 anyway.
+
+
+now the tensorflow is of 2.10.0  version
+the issue is with the cuda and cuDNN installation only
+
+
+cuda install: from tf website no admin previlage ask
+conda install -c conda-forge cudatoolkit=11.2 cudnn=8.1.0
+
+# Verify the installation:
+python -c "import tensorflow as tf; print(tf.config.list_physical_devices('GPU'))"
+
+from tensorflow website no issue of write permiison in program data
+sometimes gpt / Gemini is not right
+
+
+installing the tf 2.9 version
+
+deleting by 
+\pip uninstall -y tensorflow tensorflow-cpu tensorflow-gpu keras tensorboard tensorflow-estimator flatbuffers
+
+Delete any folders starting with:
+
+tensorflow
+
+~ensorflow (the ones that caused your earlier error)
+
+keras
+
+tensorboard
+
+pip cache purge
+
+now fresh install
+
+pip install "tensorflow<2.10"  
+
+when it completed:
+
+Installing collected packages: tensorboard-plugin-wit, keras, flatbuffers, tensorflow-io-gcs-filesystem, tensorflow-estimator, tensorboard-data-server, tensorboard, tensorflow
+Successfully installed flatbuffers-1.12 keras-2.9.0 tensorboard-2.9.1 tensorboard-data-server-0.6.1 tensorboard-plugin-wit-1.8.1 tensorflow-2.9.3 tensorflow-estimator-2.9.0 tensorflow-io-gcs-filesystem-0.31.0
+
+
+Training Optimization
+
+training accuracy - 98 (overfitting)
+validation(real, not known data) - 86
+
+optimize later first we'r gonna test it

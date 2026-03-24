@@ -2,3 +2,4 @@ pydub
 noisereduce 
 librosa 
 soundfile
+tensorflow-cpu==2.9.1 
