@@ -225,3 +225,5 @@ bp01.wav
 bp01
 processed_data
 indian_music_classifier_v1.keras
+indian_music_classifier_v2.h5
+indian_music_classifier_v2.keras

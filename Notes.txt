@@ -410,7 +410,7 @@ Setting the learning_rate to 0.0001 is a very smart move for a model this deep. 
 
 model training - 8:34 by cpu
 
-
+GPU resolution : 
 For spleeter use: as it supports below 2.10 of tf
 2. The "DirectML" Plugin (Modern & Robust)
 If you don't want to mess with specific CUDA versions, this is the most "painless" way. 
@@ -441,7 +441,7 @@ sometimes gpt / Gemini is not right
 installing the tf 2.9 version
 
 deleting by 
-\pip uninstall -y tensorflow tensorflow-cpu tensorflow-gpu keras tensorboard tensorflow-estimator flatbuffers
+pip uninstall -y tensorflow tensorflow-cpu tensorflow-gpu keras tensorboard tensorflow-estimator flatbuffers
 
 Delete any folders starting with:
 
@@ -470,4 +470,41 @@ Training Optimization
 training accuracy - 98 (overfitting)
 validation(real, not known data) - 86
 
-optimize later first we'r gonna test it
+
+1. Batch Normalization
+BatchNormalization scales the data after every convolution, which usually helps the model generalize much better.
+
+Where to put it: Immediately after your Conv2D layers but before the MaxPool2D.
+
+2. Drop layer value increase
+Your Dense(1200) layer has a massive amount of parameters (likely millions). This is where most of the memorization happens.
+
+Current: 0.45
+
+Target: Increase to 0.5 or 0.6.
+
+3. Simplify the "Head" of the Model
+A Dense(1200) is extremely large for a 5-class problem.
+ You are giving the model too much "brain space," which it uses to memorize. 
+ Reducing this to 512 or 256 often forces the model to learn more important features.
+
+
+after training version 2:
+
+what changes i made in this version 2:
+
+1. batch BatchNormalization - for generalizatino(as seen in the summaray the Conv2D layers remains same in input shape only
+                                                 get max reduce my max pool)
+
+2. drop out value increase
+-- 3 times Use 
+0.3, 0.4, 0.5
+
+3.units = 512 in dense first layers - helps to reduce the size for memorization (previously was 1200 more size)
+
+4. EarlyStopping by two functions, and ReduceLROnPlateau(learning rate adjustor based on val accuracy)
+
+
+
+# Run this in your terminal to save your exact setup
+pip freeze > requirements.txt

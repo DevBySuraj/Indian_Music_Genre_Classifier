@@ -78,3 +78,18 @@ Splitted the data in 3 way split with shuffling and stratfiy
 Normalization of data from decibel(-80, 0) to (0 - 1) on train data only for all splitof(X)
 
 
+# Step 6: CNN building and Training
+
+1. selecting the model
+2. adding the layers 
+3. compiling
+4. training
+
+-- cpu training 
+-- gpu training
+-- cuda and cDNN required
+-- version mismatch of tf, spleeter - common ground tf 2.9 for both 
+5. model save
+
+
+
