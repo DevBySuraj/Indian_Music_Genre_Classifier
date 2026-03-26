@@ -563,5 +563,27 @@ Graph error stack(space) between spleeter and tenserflow - resolving now
 untill spleeter working
 
 
+if run the spleeter and separate the audio - graph taken
+
+then load the model(tf error) - graph is finalized and can't be modified error
+
+it means spleeter need to unhold the resources or graph so that tenser can work with it
+
+,
+in chunking also the graph is finalized error
+
+The short answer: Yes, Spleeter is holding the "Graph's hold," but the chunking function is 
+also caught in the crossfire because it likely uses a TensorFlow-based preprocessing step.
+
+graph error solve:
 
 
+
+solution 2:
+spleeter command line use
+Conda environments are designed to be "silos." Even if you have FFmpeg installed in C:\ffmpeg
+, a Conda environment often ignores your Windows System PATH to prevent version conflicts. By
+ running conda install ffmpeg, you put a copy of the necessary .exe files directly inside the 
+ hindi_music folder, making it impossible for Spleeter to miss them.
+
+command line now working
