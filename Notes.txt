@@ -587,3 +587,6 @@ Conda environments are designed to be "silos." Even if you have FFmpeg installed
  hindi_music folder, making it impossible for Spleeter to miss them.
 
 command line now working
+
+7:47
+whole testing file now is working
