@@ -508,3 +508,10 @@ what changes i made in this version 2:
 
 # Run this in your terminal to save your exact setup
 pip freeze > requirements.txt
+
+
+
+
+model evaluatin
+model Testing
+UI/interface
