@@ -515,3 +515,53 @@ pip freeze > requirements.txt
 model evaluatin
 model Testing
 UI/interface
+
+
+
+
+
+
+
+
+clicker 
+typer 
+flask
+conflit errors
+
+
+pip uninstall -y spleeter click typer flask
+
+
+
+
+spleeter and typer version clash  
+
+spleeter build on typer older version
+
+but flask installed newer version of typer which stops spleeter's execution
+
+
+removing pip uninstall -y spleeter flask click typer
+pip uninstall -y spleeter flask click typer Werkzeug Jinja2 itsdangerous
+pycache delete in site packages in env
+pip cache purge, python -m pip cache purge
+
+
+installing again
+
+pip install spleeter 
+it installs :  multiple things and thier compatible verion flask changed it 
+Installing collected packages: werkzeug, click, typer, spleeter
+Successfully installed click-7.1.2 spleeter-2.4.0 typer-0.3.2 werkzeug-3.1.7   
+
+
+spleeter working now:
+sometimes requires ffmpeg, expilicity sometime not 
+
+
+Graph error stack(space) between spleeter and tenserflow - resolving now 
+untill spleeter working
+
+
+
+

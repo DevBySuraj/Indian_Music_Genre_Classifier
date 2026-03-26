@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+    <h1>Music Genre Classifier</h1>
+    
+    <!-- Audio upload -->
+    <!-- <label for="audio-upload">Upload your recording:</label>
+    <input type="file" id="audio-upload" name="audio-upload" accept="audio/*"> -->
+
+    <form action="/predict" method="POST" enctype="multipart/form-data">
+        <!-- enctype="multipart/form-data". Without this, the browser will only
+          send the filename, not the actual audio data. -->
+        <label for="audio-upload">Upload your recording:</label>
+        <input type="file" id="audio-upload" name="audio_file" accept="audio/*">
+        <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+    </form>
+    </div>
+
+{{predicted_genre}}
+
+
+
+
+
+
+</body>
+</html>
