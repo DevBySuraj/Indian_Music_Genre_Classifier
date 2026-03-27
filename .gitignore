@@ -233,3 +233,6 @@ test_song_new
 indian_music_classifier_vocal.keras
 
 indian_genre_multi_input_data.npz
+
+indian_music_classifier_multi_CNN_v1.h5
+indian_music_classifier_multi_CNN_v1.keras
