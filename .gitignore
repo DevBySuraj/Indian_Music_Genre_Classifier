@@ -228,3 +228,6 @@ indian_music_classifier_v1.keras
 indian_music_classifier_v2.h5
 indian_music_classifier_v2.keras
 cnn_notes.txt
+
+test_song_new
+indian_music_classifier_vocal.keras

@@ -3,6 +3,7 @@
 
 
 
+
 # Step 1: Coverting all the mp3 files to wav format and applying noise reduction to them.
 
 Filtering and Noise Reduction: by use of pydub, noisereduce, soundfile
@@ -93,3 +94,29 @@ Normalization of data from decibel(-80, 0) to (0 - 1) on train data only for all
 
 
 
+
+
+    Japanese version
+Music Source Separation tool with pre-trained models / ISMIR2019 extended abstract
+
+
+## Reference:
+Deezer Research - Source Separation Engine Story - deezer.io blog post:
+    [English version](https://deezer.io/releasing-spleeter-deezer-r-d-source-separation-engine-2b88985e797e)
+    [Japanese version](http://dzr.fm/splitterjp)
+[Music Source Separation tool with pre-trained models / ISMIR2019 extended abstract](http://archives.ismir.net/ismir2019/latebreaking/000036.pdf)
+
+
+@article{spleeter2020,
+  doi = {10.21105/joss.02154},
+  url = {https://doi.org/10.21105/joss.02154},
+  year = {2020},
+  publisher = {The Open Journal},
+  volume = {5},
+  number = {50},
+  pages = {2154},
+  author = {Romain Hennequin and Anis Khlif and Felix Voituret and Manuel Moussallam},
+  title = {Spleeter: a fast and efficient music source separation tool with pre-trained models},
+  journal = {Journal of Open Source Software},
+  note = {Deezer Research}
+}

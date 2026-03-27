@@ -520,9 +520,6 @@ UI/interface
 
 
 
-
-
-
 clicker 
 typer 
 flask
@@ -590,3 +587,12 @@ command line now working
 
 7:47
 whole testing file now is working
+
+
+
+
+Single other stem is done now
+#2. multi input cnn(mini-cnn) - complex and requires lot of ram to trained
+--The model can learn that "High energy in Drums + Classical instruments
+ in Other = Semiclassical." It understands the relationship between stems.
+
