@@ -231,3 +231,5 @@ cnn_notes.txt
 
 test_song_new
 indian_music_classifier_vocal.keras
+
+indian_genre_multi_input_data.npz

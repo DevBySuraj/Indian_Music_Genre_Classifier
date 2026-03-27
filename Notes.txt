@@ -596,3 +596,66 @@ Single other stem is done now
 --The model can learn that "High energy in Drums + Classical instruments
  in Other = Semiclassical." It understands the relationship between stems.
 
+
+
+
+
+
+#have now two models
+
+The "Power Couple" Ensemble (Weighted Voting)
+
+1. trained on vocals - 89% accuracy on test data
+
+2. trained on other(instruments sitar, piano, sarod, synth etc)
+
+
+now can use these two models and vote for better output
+
+# dismiss the drums and bass as they are not 
+Why ignoring Drums/Bass is actually "Smart Engineering"
+In Machine Learning, adding low-quality data is often worse than having less data. This is called the "Garbage In,
+Garbage Out" principle.
+
+The "Bass" Problem: In Semiclassical music, Spleeter often puts lower frequencies of the Tabla or Sitar
+ into the Bass stem by mistake. This creates "dirty data" that confuses the model.
+
+The "Drums" Problem: Indian percussion (Tabla/Dholak) has a very different frequency profile than Western drums (Kick/Snare).
+ Spleeter is trained on Western music, so its "Drums" stem for Indian music is often incomplete.
+
+By focusing on Vocals and Other, you are focusing on the most "discriminative" features of Indian Music.
+
+
+
+Mutli input CNN
+
+Since you're interested in the Mini-CNN (Multi-Input) approach, you are shifting from "voting" (where models work in isolation)
+ to "feature fusion" (where the model sees everything at once).
+
+Even if you feel the Drums and Bass data is "low quality" or "weak," a Multi-Input CNN can actually use that weakness as
+ a feature. For example, the model might learn: "If 'Vocals' are high-energy but 'Bass' is almost silent, it’s likely Semiclassical."
+  It treats the absence of a heavy bassline as a specific rule for that genre.
+
+
+#### Preprocessing the data of four stem (vocals, drums, other and bass ) on same timestamps because
+#### The Multi input mini cnn requires vocal, drum, other and bass chunk with same label and equal input
+
+## The Best Strategy for your RTX 3050
+Since your RTX 3050 has limited VRAM (likely 4GB or 8GB), you don't want to waste memory on completely empty files if a song has a long silence at the beginning or end.
+
+The "Master Stem" Approach:
+
+Pick the Other stem as your "Master" (since it usually has the most melodic content).
+
+Check the volume of the Other chunk.
+
+If Other is above your threshold, save ALL FOUR stems for that timestamp.
+
+If Other is below the threshold (total silence), discard ALL FOUR.
+
+This keeps your data synchronized while still cleaning out the "dead air" at the start and end of tracks.
+
+
+after this saving the data in numpy compressed zip 
+
+
