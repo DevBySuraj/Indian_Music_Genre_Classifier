@@ -589,13 +589,7 @@ command line now working
 whole testing file now is working
 
 
-
-
-Single other stem is done now
-#2. multi input cnn(mini-cnn) - complex and requires lot of ram to trained
---The model can learn that "High energy in Drums + Classical instruments
- in Other = Semiclassical." It understands the relationship between stems.
-
+Single other stem is done now as well as vocal stem
 
 
 
@@ -627,6 +621,10 @@ By focusing on Vocals and Other, you are focusing on the most "discriminative" f
 
 
 
+#2. multi input cnn(mini-cnn) - complex and requires lot of ram to trained
+--The model can learn that "High energy in Drums + Classical instruments
+ in Other = Semiclassical." It understands the relationship between stems.
+
 Mutli input CNN
 
 Since you're interested in the Mini-CNN (Multi-Input) approach, you are shifting from "voting" (where models work in isolation)
@@ -641,7 +639,7 @@ Even if you feel the Drums and Bass data is "low quality" or "weak," a Multi-Inp
 #### The Multi input mini cnn requires vocal, drum, other and bass chunk with same label and equal input
 
 ## The Best Strategy for your RTX 3050
-Since your RTX 3050 has limited VRAM (likely 4GB or 8GB), you don't want to waste memory on completely empty files if a song has a long silence at the beginning or end.
+Since your RTX 3050 has limited VRAM (likely 6GB 95 watt), you don't want to waste memory on completely empty files if a song has a long silence at the beginning or end.
 
 The "Master Stem" Approach:
 
@@ -655,7 +653,22 @@ If Other is below the threshold (total silence), discard ALL FOUR.
 
 This keeps your data synchronized while still cleaning out the "dead air" at the start and end of tracks.
 
-
 after this saving the data in numpy compressed zip 
+
+
+Model Buidling of Multi CNN
+
+1. Input shape was given in the layers of single input model
+2. we extract features from that shape by multi conv2d , multi pool layers
+3. then we flatten the data and give it to final dense layers which decides the output
+4. drop out and batch Normalization was used for removing overfitting and generalization of data respectively
+
+
+3 way data split and saving inside list
+data Normalization for each stem independently and float 32 conversion
+model tranining mini cnn 
+model evaluation - 97% accuracy
+
+
 
 
