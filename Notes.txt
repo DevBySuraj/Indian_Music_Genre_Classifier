@@ -1,4 +1,4 @@
-
+	
 
 data labels: 
 Sufi/Ghazal (Focus on Vocals/Harmonium)
@@ -672,3 +672,22 @@ model evaluation - 97% accuracy
 
 
 
+# Demux installation - based on pytorch not tenserflow, so spleeter will not get affected at all in this env
+pip install demucs diffq
+pip install torchcodec
+
+version checking: 
+pip list | findstr -i "tensorflow spleeter librosa numpy keras"
+output:
+keras                        2.9.0
+Keras-Preprocessing          1.1.2
+librosa                      0.11.0
+numpy                        1.26.4
+spleeter                     2.4.0
+tensorflow                   2.9.3
+tensorflow-estimator         2.9.0
+tensorflow-io-gcs-filesystem 0.31.0
+
+pip install torch torchaudio --index-url https://download.pytorch.org/whl/cu121 --no-deps
+
+--np-deps prevent pip from touching any preinstalled packages which can cause verions conflits
